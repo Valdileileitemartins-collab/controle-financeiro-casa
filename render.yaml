@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: controle-financeiro-casa
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true
+    disk:
+      name: financeiro-data
+      mountPath: /opt/render/project/src/storage
+      sizeGB: 1
